@@ -1,0 +1,16 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const routeEventos_1 = __importDefault(require("./src/routes/routeEventos/routeEventos"));
+const app = (0, express_1.default)();
+const PORT = process.env.PORT || 10101;
+app.use(express_1.default.json());
+app.use("/", routeEventos_1.default);
+app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`))
+    .on("error", (error) => {
+    throw new Error(error.message);
+});
+exports.default = app;
